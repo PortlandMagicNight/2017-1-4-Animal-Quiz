@@ -1,5 +1,7 @@
 # Animal Quiz
 
+Meeting Details: https://www.meetup.com/Portland-Javascript-Magic-Night/events/236011088/
+
 Today's magic night challenge is to build an animal quiz program.
 
 It works like this. The program starts by telling the user to think of an
