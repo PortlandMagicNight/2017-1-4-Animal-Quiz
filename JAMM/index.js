@@ -26,35 +26,32 @@ var askQuestions = function () {
     var newAnimal = "What animal were you thinking about?";
     var newQuestion = "How can i tell this apart from the animal i guessed?";
     var newQAnswer = "What is the answer to the new question for this new animal? (y/n)";
-    prompt.get([newAnimal], function (err, newAnimalResult) {
-        prompt.get([newQuestion], function (err, newQuestionResult) {
-            prompt.get([newQAnswer], function (err, newQAnswerResult) {
+    prompt.get([newAnimal,newQuestion,newQAnswer], function (err, result) {
 
-                var newQ = {
-                    "q": "Is it an " + newAnimalResult[newAnimal] + "?"
-                }
-                var yes = "";
-                var no = "";
-                if (newQAnswerResult[newQAnswer] == "y" || newQAnswerResult[newQAnswer] == "yes") {
-                    yes = newQ;
-                    no = data;
-                } else {
-                    yes = data;
-                    no = newQ;
-                }
-                var newData = {
-                    "q": newQuestionResult[newQuestion],
-                    "yes": yes,
-                    "no": no
-                }
+        var newQ = {
+            "q": "Is it an " + result[newAnimal] + "?"
+        }
+        var yes = "";
+        var no = "";
+        if (result[newQAnswer] == "y" || result[newQAnswer] == "yes") {
+            yes = newQ;
+            no = data;
+        } else {
+            yes = data;
+            no = newQ;
+        }
+        var newData = {
+            "q": result[newQuestion],
+            "yes": yes,
+            "no": no
+        }
 
 
-                data = newData;
-                console.log(data);
+        data = newData;
+        console.log(data);
 
-                playMore();
-            });
-        });
+        playMore();
+
     });
 }
 
