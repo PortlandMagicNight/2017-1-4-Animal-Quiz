@@ -1,0 +1,11 @@
+{
+  "name": "animal_quiz",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "run"
+  },
+  "author": "",
+  "license": "BSD-2-Clause"
+}
