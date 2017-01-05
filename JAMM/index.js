@@ -8,6 +8,18 @@ var data = {
 
 prompt.start();
 
+var playMore = function () {
+    var playAgain = "playAgain? (y/n)";
+    prompt.get([playAgain], function (err, playAgainAnswer) {
+        if (playAgainAnswer[playAgain] == "y") {
+            run(data);
+        } else {
+            console.log("Thanks for playing!!!");
+        }
+    });
+
+}
+
 var askQuestions = function () {
     console.log("I lose");
     console.log("Help me make me better!");
@@ -19,11 +31,11 @@ var askQuestions = function () {
             prompt.get([newQAnswer], function (err, newQAnswerResult) {
 
                 var newQ = {
-                    "q": "Is it an " + newAnimalResult + "?"
+                    "q": "Is it an " + newAnimalResult[newAnimal] + "?"
                 }
                 var yes = "";
                 var no = "";
-                if (newQAnswerResult == "y") {
+                if (newQAnswerResult[newQAnswer] == "y" || newQAnswerResult[newQAnswer] == "yes") {
                     yes = newQ;
                     no = data;
                 } else {
@@ -31,16 +43,16 @@ var askQuestions = function () {
                     no = newQ;
                 }
                 var newData = {
-                    "q": newQuestionResult,
+                    "q": newQuestionResult[newQuestion],
                     "yes": yes,
                     "no": no
                 }
 
-                console.log(newData);
 
                 data = newData;
                 console.log(data);
-                run(data);
+
+                playMore();
             });
         });
     });
@@ -49,11 +61,12 @@ var askQuestions = function () {
 var run = function (tree) {
 
     prompt.get([tree["q"]], function (err, result) {
-        if (result[tree["q"]] == "y") {
+        if (result[tree["q"]] == "y" || result[tree["q"]] == "yes") {
             if (tree.hasOwnProperty('yes')) {
                 run(tree["yes"]);
             } else {
                 console.log("I WIN!!!");
+                playMore();
             }
         } else {
             if (tree.hasOwnProperty('no')) {
